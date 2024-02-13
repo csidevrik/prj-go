@@ -12,7 +12,11 @@ Ademas tenemos una herramienta cli de cobra que puedes utilizar para generar mas
 - [Cobra cli ](https://github.com/spf13/cobra-cli/blob/main/README.MD)
 
 ## Pasos para la creacion del primer proyecto
-En nuestro caso tenemos un netmacfilter
+En nuestro caso tenemos un proyecto al que llamamos netmacfilter, esta herramienta deberia tener algunas funciones:
+
+Commands:   
+    - recognizeFormat tomar una mac y presentar el formato en el cual esta presentado.
+    - 
 
 
 ```shell
