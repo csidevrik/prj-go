@@ -11,8 +11,16 @@ Para hacer una cli ya existe un framework llamado cobra, este framework permite 
 Ademas tenemos una herramienta cli de cobra que puedes utilizar para generar mas aplicaciones.
 - [Cobra cli ](https://github.com/spf13/cobra-cli/blob/main/README.MD)
 
+## Pasos para la creacion del primer proyecto
+En nuestro caso tenemos un netmacfilter
 
 
 ```shell
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/carlossiguam/prj-bash/main/scripts.d/install-utils/install.sh)"
+    mkdir netmacfilter
+```
+```shell
+    cd netmacfilter
+```
+```shell
+    go mod init github.com/carlossiguam/prj-go/netmacfilter
 ```
