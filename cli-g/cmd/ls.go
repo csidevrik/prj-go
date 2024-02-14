@@ -1,24 +1,32 @@
 /*
 Copyright © 2024 NAME HERE <EMAIL ADDRESS>
-
 */
 package cmd
 
 import (
 	"fmt"
 
-	"github.com/spf13/cobra"
 	"github.com/carlossiguam/prj-go/cli-g/lib"
+	"github.com/spf13/cobra"
 )
 
 // lsCmd represents the ls command
 var lsCmd = &cobra.Command{
 	Use:   "ls",
-	Short: "lista los formatos de mac address encontrados en formats.json",cli-g/cmd/ls.go
-	Long: `Show a list of formats exists`,
+	Short: "lista los formatos de mac address encontrados en formats.json",
+	Long:  `Show a list of formats exists`,
 	Run: func(cmd *cobra.Command, args []string) {
-		// formatos := 
-		fmt.Println("uno ")
+		formatos, err := lib.ObtenerFormatos()
+		if err != nil {
+			fmt.Println("Error:", err)
+			return
+		}
+		// Puedes imprimir o manipular la lista de formatos aquí
+		fmt.Println("Formatos:")
+		for _, formato := range formatos {
+			fmt.Printf("- %s: %s\n", formato.NAME, formato.MACFORMAT)
+		}
+		// fmt.Println("uno ")
 	},
 }
 

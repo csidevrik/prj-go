@@ -18,7 +18,7 @@ type Formato struct {
 // ObtenerFormatos lee el contenido del archivo formats.json y devuelve la lista de formatos
 func ObtenerFormatos() ([]Formato, error) {
 	// Obtener la ruta completa del archivo formats.json
-	rutaArchivo := filepath.Join(".", "../conf/formats.json")
+	rutaArchivo := filepath.Join(".", "/conf/formats.json")
 
 	// Leer el contenido del archivo
 	contenido, err := os.ReadFile(rutaArchivo)
