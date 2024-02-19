@@ -1,0 +1,18 @@
+[
+  {
+    "NAME": "aruba",
+    "MACFORMAT": "000265-1f2a26"
+  },
+  {
+    "NAME": "cisco",
+    "MACFORMAT": "0002.651f.2a26"
+  },
+  {
+    "NAME": "huawe",
+    "MACFORMAT": "0002-651f-2a26"
+  },
+  {
+    "NAME": "linux",
+    "MACFORMAT": "00:02:65:1f:2a:26"
+  }
+]
