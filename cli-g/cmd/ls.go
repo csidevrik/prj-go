@@ -13,7 +13,7 @@ import (
 // lsCmd represents the ls command
 var lsCmd = &cobra.Command{
 	Use:   "ls",
-	Short: "lista los formatos de mac address encontrados en formats.json",
+	Short: "list formats mac addresses find in formats.json",
 	Long:  `Show a list of formats exists`,
 	Run: func(cmd *cobra.Command, args []string) {
 		formatos, err := lib.ObtenerFormatos()
