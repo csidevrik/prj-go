@@ -1,7 +1,7 @@
 go projects 
 ------------------------------------------------
 
-This repo shares examples of projects created using go language programming.
+This repo shares my first application cli created using go as language programming.
 
 ## Install Cobra framework
 Para hacer una cli ya existe un framework llamado cobra, este framework permite obtener una aplicacion cli organizada y elegante, usando go como lenguaje de programacion.
@@ -11,22 +11,26 @@ Para hacer una cli ya existe un framework llamado cobra, este framework permite 
 Ademas tenemos una herramienta cli de cobra que puedes utilizar para generar mas aplicaciones.
 - [Cobra cli ](https://github.com/spf13/cobra-cli/blob/main/README.MD)
 
-## Pasos para la creacion del primer proyecto
-En nuestro caso tenemos un proyecto al que llamamos netmacfilter, esta herramienta deberia tener algunas funciones:
+## Pasos para la creacion de linutils
+Este proyecto de linutils pretende homologar en cualquiera de los linux que vengo utilizando hasta el momento que son fedora y ubuntu.
+
+Ahora hablaremos de los distintos subcomandos que quiero implementar.
+
+
 
 Commands:   
-    - recognizeFormat tomar una mac y presentar el formato en el cual esta presentado.
+    - 
     - 
 
 
 ```shell
-    mkdir netmacfilter
+    mkdir utils
 ```
 ```shell
-    cd netmacfilter
+    cd utils
 ```
 ```shell
-    go mod init github.com/carlossiguam/prj-go/netmacfilter/getformatMAC
+    go mod init github.com/csidevrik/prj-go/linutils/utils
 ```
 
 ### Nombrando al author y estableciendo la licencia

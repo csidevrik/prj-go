@@ -4,6 +4,7 @@ Copyright © 2024 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -11,12 +12,16 @@ import (
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
-	Use:   "cli-g",
-	Short: "aplication cli for golang",
-	Long:  `An aplication for network, and use on linux for now.`,
+	Use:   "utils",
+	Short: "utils automatiza algunas tareas multiplataforma linux.",
+	Long: `utils será multiplataforma y podrá usarse en varios linux tanto fedora y ubuntu 
+tendrá subcomandos que se hagan uso en los dos sistemas operativos antes mencionados.
+	For example:
+	Esperamos esta herramienta le sea util a otros que tengan la misma obsesion con las dos 
+	distribuciones.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	// Run: func(cmd *cobra.Command, args []string) { },
+	Run: func(cmd *cobra.Command, args []string) { fmt.Println("Hello CLI") },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
@@ -33,7 +38,7 @@ func init() {
 	// Cobra supports persistent flags, which, if defined here,
 	// will be global for your application.
 
-	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.cli-g.yaml)")
+	// rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.utils.yaml)")
 
 	// Cobra also supports local flags, which will only run
 	// when this action is called directly.
