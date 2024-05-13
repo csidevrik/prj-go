@@ -21,7 +21,7 @@ tendrá subcomandos que se hagan uso en los dos sistemas operativos antes mencio
 	distribuciones.`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
-	Run: func(cmd *cobra.Command, args []string) { fmt.Println("Hello CLI") },
+	Run: func(cmd *cobra.Command, args []string) { fmt.Println("uitls es la onda") },
 }
 
 // Execute adds all child commands to the root command and sets flags appropriately.
