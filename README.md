@@ -1,10 +1,11 @@
 GO LEARNING CSIDEVRIK
-=================================================
+=====================
 
 Este es un compedio para aprender el lenguaje go creado por google hace un buen tiempo.
 
-INTRODUCCION
-------------------------------------------------------------------------
+INTRODUCCIONAny contributions are welcome! I'm sure the code is ugly as hell since this is really my first Go program but anybody who would like to help out is greatly appreciated! Feel free to Open a PR and Issue with any feedback/suggestions for improvements or features in Winfetch.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 Estoy tratando de aprender de tres lugares que son los siguientes:
 
 | name      	| link                                                               	| type          	|
@@ -29,11 +30,9 @@ Aqui tengo otra comparativa acerca de go
 
 # Introduccion
 
-
-
 NOTES
-------------------------------------------------------------------------
+-----
+
 ## Me he ayudado con este link para hacer las tablas
 
 https://www.tablesgenerator.com/markdown_tables
-
