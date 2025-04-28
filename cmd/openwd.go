@@ -30,11 +30,8 @@ var openwdCmd = &cobra.Command{
 		// Usa la variable de entorno $PROFILE si está definida
 		profilePath := os.Getenv("PROFILE")
 		if profilePath == "" {
-			usr, err := user.Current()
-			if err != nil {
-				return err
-			}
-			profilePath = filepath.Join(usr.HomeDir, "Documents", "PowerShell", "Microsoft.PowerShell_profile.ps1")
+			// Directorio fijo para tu perfil en Windows
+			profilePath = `D:\C\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
 		}
 
 		// Determinar ruta relativa si está dentro de $HOME
@@ -76,5 +73,5 @@ var openwdCmd = &cobra.Command{
 }
 
 func init() {
-	rootCmd.AddCommand(openwdCmd)
+	RootCmd.AddCommand(openwdCmd)
 }

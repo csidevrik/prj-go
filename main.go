@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"<TU_MÓDULO>/perfilizer/cmd"
+	"github.com/csidevrik/perfilizer/cmd"
 )
 
 func main() {
