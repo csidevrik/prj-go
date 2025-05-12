@@ -1,9 +1,8 @@
-module github.com/csidevrik/perfilizer
+module github.com/csidevrik/datanet
 
 go 1.24.1
 
-require (
-	github.com/inconshreveable/mousetrap v1.1.0 // indirect
-	github.com/spf13/cobra v1.9.1 // indirect
-	github.com/spf13/pflag v1.0.6 // indirect
-)
+go get fyne.io/fyne/v2
+go get github.com/gofiber/fiber/v2          # (o Gin si prefieres)
+go get github.com/go-ping/ping              # para hacer ping a IPs
+go get github.com/jszwec/csvutil            # CSV a struct más robusto

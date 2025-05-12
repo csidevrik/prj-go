@@ -2,11 +2,11 @@
 
 # 1. Ruta a los repos
 $origin = "." 
-$dest   = "..\perfilizer"
+$dest   = "..\datanet"
 
 # 2. Cambiar a rama perfilizer
 Set-Location $origin
-git checkout perfilizer
+git checkout datanet
 git pull
 
 # 3. Copiar archivos (sin .git)
