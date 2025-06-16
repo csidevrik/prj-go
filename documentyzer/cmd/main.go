@@ -1,6 +1,6 @@
 package main
 
-import "../internal/tui"
+import "documentyzer/internal/tui"
 
 func main() {
 	tui.Start()
