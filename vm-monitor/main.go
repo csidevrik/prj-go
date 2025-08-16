@@ -9,6 +9,7 @@ import (
 	"github.com/charmbracelet/lipgloss"
 
 	"vm-monitor/internal"
+	"vm-monitor/ui"
 
 	"github.com/charmbracelet/bubbles/textinput"
 )
@@ -132,9 +133,37 @@ func updateMenu(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 		case "enter":
 			switch m.choices[m.cursor] {
 			case "Consultar VMs encendidas":
-				command := `Get-VM | Where-Object {$_.PowerState -eq 'PoweredOn'} | Select Name, PowerState, VMHost`
-				m.output = internal.ExecutePowerShellWithAuth(m.vcenter, m.username, m.password, command)
+				command := `Get-VM | Where-Object {$_.PowerState -eq 'PoweredOn'} | Select -ExpandProperty Name`
+				vmListRaw := internal.ExecutePowerShellWithAuth(m.vcenter, m.username, m.password, command)
+				// vmNames := strings.Split(strings.TrimSpace(vmListRaw), "\n")
+				vmNames := cleanNames(vmListRaw)
+
+
+				selectedVMs, err := ui.RunSelector(vmNames)
+				if err != nil {
+					m.output = fmt.Sprintf("Error al seleccionar VMs: %v", err)
+					m.executed = true
+					return m, nil
+				}
+				if len(selectedVMs) == 0 {
+					m.output = "No se seleccionaron VMs para apagar."
+					m.executed = true
+					return m, nil
+				}
+
+				// Generar script para apagado de VMs seleccionadas
+				// vmScript := "$vmNames = @(" + strings.Join(mapSlice(selectedVMs, func(name string) string {
+				// 	return fmt.Sprintf("\"%s\"", strings.TrimSpace(name))
+				// }), ", ") + ")\n$vmNames | ForEach-Object { Stop-VM -VM $_ -Confirm:$false }"
+				// quotedList := quoteVMs(selectedVMs)
+				// vmScript := fmt.Sprintf("$vmNames = @(%s)\n$vmNames | ForEach-Object { Stop-VM -VM $_ -Confirm:$false }", quotedList)
+				vmScript := internal.GenerateStopVMCommand(selectedVMs)
+
+
+
+				m.output = internal.ExecutePowerShellWithAuth(m.vcenter, m.username, m.password, vmScript)
 				m.executed = true
+
 			case "Salir":
 				return m, tea.Quit
 			}
@@ -142,6 +171,19 @@ func updateMenu(m model, msg tea.Msg) (tea.Model, tea.Cmd) {
 	}
 	return m, nil
 }
+
+func cleanNames(raw string) []string {
+	lines := strings.Split(strings.TrimSpace(raw), "\n")
+	var result []string
+	for _, line := range lines {
+		line = strings.TrimSpace(line)
+		if line != "" {
+			result = append(result, line)
+		}
+	}
+	return result
+}
+
 
 func (m model) View() string {
 	var b strings.Builder
@@ -170,6 +212,26 @@ func (m model) View() string {
 	}
 	return b.String()
 }
+
+func mapSlice[T any](slice []T, f func(T) string) []string {
+	result := make([]string, len(slice))
+	for i, v := range slice {
+		result[i] = f(v)
+	}
+	return result
+}
+func quoteVMs(vms []string) string {
+	var parts []string
+	for _, vm := range vms {
+		vm = strings.TrimSpace(vm)
+		if vm != "" {
+			parts = append(parts, fmt.Sprintf("\"%s\"", vm))
+		}
+	}
+	return strings.Join(parts, ", ")
+}
+
+
 
 func main() {
 	if err := tea.NewProgram(initialModel()).Start(); err != nil {
