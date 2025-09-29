@@ -12,7 +12,7 @@ if (-not $basePath) {
 }
 
 # Estructura principal
-$mainFolder = Join-Path $basePath "cumplimiento30puntos"
+$mainFolder = Join-Path $basePath "c30p"
 New-Item -ItemType Directory -Path $mainFolder -Force | Out-Null
 
 # Subcarpetas clave
