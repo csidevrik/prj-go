@@ -1,0 +1,19 @@
+[book]
+title = "Mi libro de Go"
+author = "Carlos Sigua"
+language = "es"
+multilingual = false
+src = "src"
+
+[build]
+create-missing = true
+
+[output.html]
+default-theme = "light"
+preferred-dark-theme = "navy"
+git-repository-url = "https://github.com/csidevrik/prj-go"
+git-repository-icon = "fa-github"
+additional-css = ["theme/custom.css"]
+
+[preprocessor.index]
+
