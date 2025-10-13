@@ -4,10 +4,19 @@
 
 ## Instalar Go
 
-- Windows: descarga de https://go.dev/dl/
+### Windows
 
-- Linux (Fedora): `sudo dnf install golang` (o descarga del tar oficial si quieres última versión)
+descarga de https://go.dev/dl/
 
+### Linux (Fedora) 
+
+```bash
+sudo dnf install golang
+```
+
+`sudo dnf install golang` (o descarga del tar oficial si quieres última versión)
+
+### Linux (Ubuntu)
 
 
 Verifica:

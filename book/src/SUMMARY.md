@@ -4,6 +4,7 @@
 
 - [Instalación y setup](setup.md)
 
+- [Cápitulo 0](ch00.README.md)
 
 
 - [Lenguaje](lenguaje/README.md)

@@ -6,11 +6,13 @@ Este es mi cuaderno/libro en progreso sobre **Go**. La idea es registrar lo que 
 
 **Objetivos:**
 
-- Entender la sintaxis y el modelo de concurrencia de Go.
+- Entender la sintaxis e Go.
 
 - Construir utilidades reales (CLI, servicios web, pruebas).
 
 - Documentar cada concepto con ejemplos breves.
+
+
 
 
 
