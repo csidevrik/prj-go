@@ -1,8 +1,9 @@
 package app
 
 import (
+	"rikcli/internal/pages"
+
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/csidevrik/rikcli/internal/pages"
 )
 
 type Route int

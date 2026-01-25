@@ -4,8 +4,9 @@ import (
 	"fmt"
 	"os"
 
+	"rikcli/internal/app"
+
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/csidevrik/rikcli/internal/app"
 )
 
 func main() {
