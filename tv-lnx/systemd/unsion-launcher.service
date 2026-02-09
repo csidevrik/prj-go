@@ -1,0 +1,17 @@
+[Unit]
+Description=Unision TV Launcher para Mamá Elvia
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=oneshot
+Environment="DISPLAY=:0"
+Environment="XAUTHORITY=%h/.Xauthority"
+ExecStartPre=/usr/bin/sleep 5
+ExecStart=/opt/unsion-launcher/tv-lnx
+RemainAfterExit=no
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=default.target
