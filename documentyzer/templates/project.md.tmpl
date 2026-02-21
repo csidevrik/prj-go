@@ -1,0 +1,35 @@
+# {{ .Name }}
+
+## Descripción
+
+{{ .Description }}
+
+## Información
+
+- **Versión**: {{ .Version }}
+- **Última actualización**: {{ .LastUpdated }}
+
+## Distribuciones Soportadas
+
+{{ range .Distros }}
+- {{ .Name }} ({{ .Version }}) - {{ .Status }}
+{{- end }}
+
+## Tags
+
+{{ range .Tags }}
+- {{ . }}
+{{- end }}
+
+## Instalación
+
+Ejecutar el script de instalación:
+
+```bash
+chmod +x install.sh
+./install.sh
+```
+
+## Más información
+
+Para más detalles, consulta el archivo `meta.json`.
