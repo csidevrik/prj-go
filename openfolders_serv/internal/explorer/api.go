@@ -2,6 +2,8 @@ package explorer
 
 import (
 	"fmt"
+	"os"
+	"os/exec"
 	"syscall"
 	"time"
 	"unsafe"
@@ -73,13 +75,51 @@ func sendTextUnicode(text string) {
 		procSendInput.Call(1, uintptr(unsafe.Pointer(&input)), unsafe.Sizeof(input))
 		input.Ki.Flags = KEYEVENTF_UNICODE | KEYEVENTF_KEYUP
 		procSendInput.Call(1, uintptr(unsafe.Pointer(&input)), unsafe.Sizeof(input))
-		time.Sleep(5 * time.Millisecond)
+		time.Sleep(CharacterDelay)
 	}
+}
+
+func launchExplorer() error {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		return fmt.Errorf("failed to get home directory: %w", err)
+	}
+
+	cmd := exec.Command("explorer.exe", home)
+	if err := cmd.Start(); err != nil {
+		return fmt.Errorf("failed to launch explorer: %w", err)
+	}
+
+	fmt.Println("🔍 Launching Explorer window...")
+	time.Sleep(WindowLaunchDelay)
+	return nil
+}
+
+func openSingleTab(path string) error {
+	sendCtrlCombo(VK_T)
+	time.Sleep(NewTabDelay)
+
+	sendCtrlCombo(VK_L)
+	time.Sleep(AddressBarDelay)
+
+	sendTextUnicode(path)
+	time.Sleep(TextInputDelay)
+
+	keyPress(VK_RETURN, true)
+	time.Sleep(EnterKeyPressDelay)
+	keyPress(VK_RETURN, false)
+	time.Sleep(NavigationDelay)
+
+	return nil
 }
 
 func OpenExplorerWithPaths(paths []string) error {
 	if len(paths) == 0 {
 		return fmt.Errorf("no paths provided")
+	}
+
+	if err := launchExplorer(); err != nil {
+		return err
 	}
 
 	hwnd, _, _ := procFindWindow.Call(
@@ -88,29 +128,35 @@ func OpenExplorerWithPaths(paths []string) error {
 	)
 
 	if hwnd == 0 {
-		return fmt.Errorf("explorer window not found - please open a File Explorer window first")
+		return fmt.Errorf("explorer window not found after launch")
 	}
 
 	procSetForeground.Call(hwnd)
-	time.Sleep(1000 * time.Millisecond)
+	time.Sleep(WindowFocusDelay)
+
+	log := NewSessionLog(len(paths))
 
 	for i, path := range paths {
-		fmt.Printf("[%d/%d] Opening %s\n", i+1, len(paths), path)
+		startTime := time.Now()
 
-		sendCtrlCombo(VK_T)
-		time.Sleep(1000 * time.Millisecond)
+		err := openSingleTab(path)
 
-		sendCtrlCombo(VK_L)
-		time.Sleep(800 * time.Millisecond)
+		result := TabResult{
+			TabNumber: i + 1,
+			Path:      path,
+			Duration:  time.Since(startTime),
+		}
 
-		sendTextUnicode(path)
-		time.Sleep(1500 * time.Millisecond)
+		if err != nil {
+			result.Status = "failed"
+			result.Error = err.Error()
+		} else {
+			result.Status = "success"
+		}
 
-		keyPress(VK_RETURN, true)
-		time.Sleep(300 * time.Millisecond)
-		keyPress(VK_RETURN, false)
-		time.Sleep(3000 * time.Millisecond)
+		log.AddResult(result)
 	}
 
+	log.Print()
 	return nil
 }
