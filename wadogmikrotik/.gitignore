@@ -1,0 +1,5 @@
+# Configuración y logs
+configs/config.yaml
+logs/
+*.exe
+*.log
